@@ -144,7 +144,7 @@ public class Legoshi implements ModInitializer {
             return false;
         });
 
-        Thread.ofPlatform().name("Legoshi-Bot").start(() -> start(config));
+        start(config); // blocking on purpose: no bot, no whitelist, no server
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
             if (jda != null) {
                 channel.sendMessageEmbeds(new EmbedBuilder().setTitle("Server is shutting down...").setColor(0xED4245).build()).queue();
